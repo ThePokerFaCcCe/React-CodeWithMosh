@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { v4 } from "uuid";
+import Alert from "./Alert";
 
 
 interface Props{
@@ -17,7 +18,10 @@ export default function ListGroup({items,heading,onSelectItem}: Props) {
 
   return (
     <>
-      <h1>{heading}</h1>
+      <Alert>
+        <h1>{heading}</h1>
+      </Alert>
+
       {items.length === 0 && <h1>List is empty</h1>}
       <ul className="list-group">
         {items.map((item, index) => (
