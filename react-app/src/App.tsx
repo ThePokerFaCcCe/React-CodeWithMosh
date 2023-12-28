@@ -1,35 +1,16 @@
 import { useState } from "react";
-import ListGroup from "./ListGroup";
-import BSButton from "./BSButton";
-import Alert from "./Alert";
+import ListGroup from "./components/ListGroup";
+import BSButton from "./components/BSButton";
+import Alert from "./components/Alert";
+import CssModuleButton from "./components/CssModuleButton/CssModuleButton";
 
 const App = () => {
   const [items, setItems] = useState(["london", "paris", "irland"]);
   const [warning, setWarning] = useState("");
 
   return (
-    <div>
-      {warning && (
-        <Alert type="danger" closeable onClose={(e) => setWarning("")}>
-          {warning}
-        </Alert>
-      )}
-      <ListGroup
-        items={items}
-        heading="List"
-        onSelectItem={(item, index) => {
-          console.log(`${index}: ${item}`);
-        }}
-      />
-      <BSButton
-        onClick={(e) => {
-          setItems([]);
-          setWarning("List Cleared!");
-        }}
-        type="primary"
-      >
-        Clear
-      </BSButton>
+    <div className="container mt-5">
+      <CssModuleButton/>
     </div>
   );
 };
