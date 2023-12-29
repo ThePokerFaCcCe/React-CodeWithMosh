@@ -5,14 +5,12 @@ import Alert from "./components/Alert";
 import CssModuleButton from "./components/CssModuleButton/CssModuleButton";
 import StyledComponetButton from "./components/StyledComponetButton";
 import Like from "./Like";
+import Person from "./components/Person";
 
 const App = () => {
   return (
-    <div className="m-5">
-      <Like
-        onLike={(e) => console.log("Liked")}
-        onDislike={(e) => console.log("Disliked")}
-      />
+    <div className="container">
+      <Person/>
     </div>
   );
 };
