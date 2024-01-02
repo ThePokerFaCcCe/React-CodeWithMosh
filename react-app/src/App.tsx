@@ -8,11 +8,12 @@ import Like from "./Like";
 import Person from "./components/Person";
 import ExpandableText from "./components/ExpandableText";
 import RefForm from "./components/RefForm";
+import StateForm from "./components/StateForm";
 
 const App = () => {
   return (
     <div className="container">
-      <RefForm/>
+      <StateForm/>
     </div>
   );
 };
