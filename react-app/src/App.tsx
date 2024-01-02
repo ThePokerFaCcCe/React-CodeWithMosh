@@ -7,18 +7,12 @@ import StyledComponetButton from "./components/StyledComponetButton";
 import Like from "./Like";
 import Person from "./components/Person";
 import ExpandableText from "./components/ExpandableText";
+import RefForm from "./components/RefForm";
 
 const App = () => {
   return (
     <div className="container">
-      <ExpandableText maxLength={20}>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa officiis
-        labore unde consequuntur non, repudiandae reprehenderit cum tenetur quam
-        maxime repellat accusamus sint magnam ab dolorum magni. Doloremque in
-        magnam iste dicta architecto est expedita sed repellat quisquam eaque!
-        Itaque corrupti aperiam dolores doloribus mollitia, architecto
-        voluptatibus praesentium a illum.
-      </ExpandableText>
+      <RefForm/>
     </div>
   );
 };
