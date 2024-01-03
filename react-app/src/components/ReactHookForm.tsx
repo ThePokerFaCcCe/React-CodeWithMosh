@@ -1,13 +1,20 @@
 import React, { ChangeEvent, FormEvent, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
 
-interface FormData{
-    name: string,
-    age: number,
-}
+const schema = z.object({
+  name: z.string().min(3),
+  age: z.number({invalid_type_error:"Input is invalid"}).min(10),
+});
+
+// interface FormData{name:string,age:number}
+type FormData = z.infer<typeof schema>;
 
 const ReactHookForm = () => {
-  const { register, handleSubmit, formState } = useForm<FormData>();
+  const { register, handleSubmit, formState } = useForm<FormData>({
+    resolver: zodResolver(schema),
+  });
 
   return (
     <>
@@ -17,15 +24,13 @@ const ReactHookForm = () => {
             Name
           </label>
           <input
-            {...register("name",{required:true})}
+            {...register("name")}
             type="text"
             id="name"
             className="form-control"
           />
           {formState.errors.name && (
-            <p className="text-danger">
-              {formState.errors.name?.type?.toString()}
-            </p>
+            <p className="text-danger">{formState.errors.name?.message}</p>
           )}
         </div>
         <div className="mb-3">
@@ -33,21 +38,19 @@ const ReactHookForm = () => {
             Age
           </label>
           <input
-            {...register("age",{required:true,min:5,max:100})}
+            {...register("age",{valueAsNumber:true  })}
             type="number"
             id="age"
             className="form-control"
           />
           {formState.errors.age && (
-            <p className="text-danger">
-              {formState.errors.age?.type?.toString()}
-            </p>
-          )}
+            <p className="text-danger">{formState.errors.age?.message}</p>
+          )}{" "}
         </div>
         <hr />
         {/* <p>{JSON.stringify(person)}</p> */}
         <hr />
-        <input type="submit" className="btn btn-secondary" value="Submit" />
+        <input disabled={!formState.isValid} type="submit" className="btn btn-secondary" value="Submit" />
       </form>
     </>
   );
